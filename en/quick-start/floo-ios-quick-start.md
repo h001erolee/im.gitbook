@@ -111,22 +111,22 @@ Pass the account password you obtained in the previous step into the -signInById
 Two login modes provided: One for normal manual login, and the other for quick login
 
 ```
-[[[BMXClient sharedClient] userService] signInById:userid password:password completion:^(BMXError *error) {
+[[BMXClient sharedClient] signInById:userid password:password completion:^(BMXError *error) {
         if (!error) {
-            NSLog(@"Login successful username = %lld , password = %@",userid, password);
+            NSLog(@"登录成功 username = %lld , password = %@",userid, password);
           } else {
-            NSLog(@"Failed errorCode = %lu ", error.errorCode);
+            NSLog(@"失败 errorCode = %lu ", error.errorCode);
         }
      }];
 
-     // Quick login needs no getting token
-     [[[BMXClient sharedClient] userService] fastSignInById: userid password:password  completion:^(BMXError *error) {
-         if (!error) {
-             NSLog(@"Registered username = %@ , password = %@", userid, password);
-         } else {
-             NSLog(@"Failed errorCode = %ld ", error.errorCode);
-         }
-      }];
+// Quick login without getting token
+[[BMXClient sharedClient] fastSignInById: userid password:password  completion:^(BMXError *error) {
+ if (!error) {
+     NSLog(@"登录成功 username = %@ , password = %@", userid, password);
+ } else {
+     NSLog(@"失败 errorCode = %ld ", error.errorCode);
+ }
+}];
 ```
 
 ### IV. Conversation list function
